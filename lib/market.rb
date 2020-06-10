@@ -1,6 +1,8 @@
 class Market
+  attr_reader :name, :vendors
 
-  def initialize(argument)
-    @argument = argument
+  def initialize(name)
+    @name = name
+    @vendors =[]
   end
 end
