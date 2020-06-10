@@ -19,4 +19,20 @@ class Market
       vendor.inventory.include?(item)
     end
   end
+
+  def total_inventory
+    market_inventory = Hash.new
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, amount|
+        if market_inventory[item].nil?
+          market_inventory[item] = Hash.new(0)
+          market_inventory[item][:quantity] += amount
+          market_inventory[item][:vendors] = vendors_that_sell(item)
+        else
+          market_inventory[item][:quantity] += amount
+        end
+      end
+    end
+    market_inventory
+  end
 end
